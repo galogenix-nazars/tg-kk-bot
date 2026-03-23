@@ -45,8 +45,8 @@ logger = logging.getLogger(__name__)
 INSTAGRAM_PATTERN = re.compile(r'https?://(?:www\.)?instagram\.com\S*')
 
 def transform_link(url: str) -> str:
-    """Добавляет 'kk' перед 'instagram' в URL."""
-    return re.sub(r'(https?://(?:www\.)?)instagram', r'\1kkinstagram', url)
+    """Заменяет instagram.com на instafix.galogenix.workers.dev."""
+    return re.sub(r'https?://(?:www\.)?instagram\.com', 'https://instafix.galogenix.workers.dev', url)
 
 # ========================
 #  ОБРАБОТЧИКИ
@@ -139,7 +139,7 @@ async def on_bot_added(update: Update, context: ContextTypes.DEFAULT_TYPE):
             _runtime_group_id = update.message.chat_id
             await update.message.reply_text(
                 f"👋 Привет! Я готов к работе!\n"
-                f"Буду пересылать Instagram-ссылки с заменой на kkinstagram.com\n\n"
+                f"Буду пересылать Instagram-ссылки с заменой на instafix.galogenix.workers.dev\n\n"
                 f"Отправь мне ссылку в личку — я перешлю её сюда ✅\n\n"
                 f"ID этой группы: `{update.message.chat_id}`",
                 parse_mode="Markdown"
